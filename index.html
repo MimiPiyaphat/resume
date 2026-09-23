@@ -100,12 +100,16 @@
             
             <!-- Profile Info -->
             <div class="flex flex-col items-center text-center mb-10">
-                <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-cream shadow-lg mb-6 bg-cream-dark">
-                    <!-- Placeholder Profile Image. Replace src with your actual image -->
-                    <img src="https://placehold.co/400x400/FDFBF7/1B263B?text=PR" alt="P.Rangsiwatthananon" class="w-full h-full object-cover">
+                <div class="relative w-40 h-40 rounded-full overflow-hidden border-4 border-cream shadow-lg mb-6 bg-cream-dark group cursor-pointer" onclick="document.getElementById('profile-upload').click()">
+                    <img id="profile-img" src="360_F_1525359933_TPhX3MjyVprBbNPuvfSMYm3psz8MrsbD.jpg" alt="Piyaphat Rangsiwatthananon" class="w-full h-full object-cover transition duration-300 group-hover:brightness-50">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 print-hide text-white flex-col">
+                        <i class="fas fa-camera text-2xl mb-1"></i>
+                        <span class="text-xs font-semibold">Change Photo</span>
+                    </div>
+                    <input type="file" id="profile-upload" class="hidden" accept="image/*" onchange="previewImage(event)">
                 </div>
-                <h1 class="text-3xl md:text-4xl font-bold tracking-wide uppercase mb-2">P. <span class="font-light">Rangsiwatthananon</span></h1>
-                <h2 class="text-lg font-medium text-cream/80 tracking-widest uppercase">Full Stack Developer</h2>
+                <h1 class="text-2xl md:text-3xl font-bold tracking-wide uppercase mb-2">Piyaphat <span class="font-light block text-xl mt-1">Rangsiwatthananon</span></h1>
+                <h2 class="text-lg font-medium text-cream/80 tracking-widest uppercase">Software Developer</h2>
             </div>
 
             <div class="mb-10 border-t border-cream/20 pt-6">
@@ -115,7 +119,7 @@
                         <div class="w-8 h-8 rounded-full bg-cream/10 flex items-center justify-center shrink-0">
                             <i class="fas fa-envelope"></i>
                         </div>
-                        <a href="mailto:john.doe@example.com" class="hover:text-white transition">john.doe@example.com</a>
+                        <a href="mailto:piyaphat.r@ku.th" class="hover:text-white transition break-all">piyaphat.r@ku.th</a>
                     </li>
                     <li class="flex items-center gap-4">
                         <div class="w-8 h-8 rounded-full bg-cream/10 flex items-center justify-center shrink-0">
@@ -289,5 +293,18 @@
 
         </section>
     </main>
+
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-img').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </body>
 </html>
